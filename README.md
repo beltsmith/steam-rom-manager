@@ -69,11 +69,21 @@ In the future we plan to add an artwork only parser for non Steam games (either 
 
 To compile this app, you'll need the latest `Node.js` and `npm` (if for any reason this doesn't work try downgrading to node 14.18.1 LTS using nvm or volta). Every script will need to be run from the project directory.
 
+## Setup
+
 Before running any scripts, dependencies must be installed using:
 
 ```
 npm ci
 ```
+
+Along with running the `prepare:build` npm script to compile files in `./webpack` in order to run build/watch commands:
+
+```
+npm run prepare:build
+```
+
+### Windows specific caveats
 
 Unfortunately, because of an issue with `better-sqlite3` you will most likely also have to run `npm ci` after building for windows if you want `npm run start` to work. Otherwise, you will likely see the runtime error `better-sqlite3 is not a valid win32 application`.
 
@@ -85,6 +95,7 @@ All script must be run using `npm run` command. For example, `npm run watch:rend
 |---|---|
 |`postinstall`|Recompiles native apps to match Electron's NodeJS version if needed|
 |`start`|Launches compiled app|
+|`prepare:build`|Compiles typescript files in `./webpack` used in the build process|
 |`watch:main`|Compiles Electron app and watches for changes|
 |`watch:renderer`|Compiles a renderer for an Electron app and watches for changes|
 |`build:main`|Compiles Electron app in production mode|
